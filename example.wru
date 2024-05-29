@@ -45,4 +45,5 @@ fnc main [
     bool isTrue : ok
     call checkIsTrue
     call repeat
+    showln " you can use 'input type varname' to create an input. types: int, string "
 ]
