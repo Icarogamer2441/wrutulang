@@ -1,0 +1,48 @@
+fnc test [
+    int n2 : 10
+    if n1 = n2 [
+        showln " you can use '=' or '!' or '>>' or '<<' or '>' or '<' "
+        showln \n
+    ]
+]
+
+fnc checkIsTrue [
+    if isTrue [
+        showln " it's evrything okay! "
+        showln \n
+    ]
+]
+
+fnc repeat [
+    int checknum : 10
+    int num : 0
+    int incnum : 1
+    while [
+        mod num < incnum
+        if num > checknum [
+            stop
+        ]
+        showln " IM IN A WHILE LOOP! "
+        showln \n
+    ]
+]
+
+fnc main [
+    int n1 : 10
+    showln " Hello world! "
+    showln \n
+    showln " n1 value is: "
+    showln \spc
+    showln n1
+    showln \n
+    call test
+    bool isTrue : ok
+    showln isTrue
+    showln \n
+    bool isTrue : no
+    showln isTrue
+    showln \n
+    bool isTrue : ok
+    call checkIsTrue
+    call repeat
+]
