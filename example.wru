@@ -1,3 +1,6 @@
+&& this is a comment!
+&& you can use coments inside and outside of an function
+
 fnc test [
     int n2 : 10
     if n1 = n2 [
@@ -53,7 +56,24 @@ fnc main [
     float fn1 : 2.5
     showln fn1
     showln \n
-    showln " you can use 'rand varname num outputvar' or 'rand varname varname outputvar' or 'rand num num outputvar' or 'rand num varname outputvar'
+    showln " you can use 'rand varname num outputvar' or 'rand varname varname outputvar' or 'rand num num outputvar' or 'rand num varname outputvar' "
+    showln \n
+    list mylist
+    listapp mylist fn1
+    showln mylist
+    showln \n
+    split msg mysplit
+    showln mysplit
+    showln \n
+    getlistitem mysplit 0 > msg2
+    showln msg2
+    showln \n
+    showln " in 'getlistitem' you can use: 'getlistitem listvarname varname > outputvarname' or 'getlistitem listvarname num > outputvarname' "
+    showln \n
+    listpop  mysplit
+    showln " use 11 or more to exit the loop "
+    showln \n
+    int numm : 11
     while [
         showln " guess the number from 1 to 10 > "
         showln \spc
@@ -65,8 +85,13 @@ fnc main [
             stop
         ]
         if usernum ! corrnum [
-            showln " Incorrect! try again. "
-            showln \n
+            if usernum >> numm [
+                stop
+            ]
+            if usernum < numm [
+                showln " Incorrect! try again. "
+                showln \n
+            ]
         ]
     ]
 ]
