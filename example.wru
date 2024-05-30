@@ -46,4 +46,27 @@ fnc main [
     call checkIsTrue
     call repeat
     showln " you can use 'input type varname' to create an input. types: int, string "
+    showln \n
+    string msg : I'm an string
+    showln msg
+    showln \n
+    float fn1 : 2.5
+    showln fn1
+    showln \n
+    showln " you can use 'rand varname num outputvar' or 'rand varname varname outputvar' or 'rand num num outputvar' or 'rand num varname outputvar'
+    while [
+        showln " guess the number from 1 to 10 > "
+        showln \spc
+        rand 1 10 corrnum
+        input int usernum
+        if usernum = corrnum [
+            showln " Correct! "
+            showln \n
+            stop
+        ]
+        if usernum ! corrnum [
+            showln " Incorrect! try again. "
+            showln \n
+        ]
+    ]
 ]
