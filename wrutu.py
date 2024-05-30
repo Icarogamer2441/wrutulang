@@ -1,4 +1,5 @@
 import sys
+from random import randint
 
 functions = {}
 variables = {}
@@ -149,6 +150,33 @@ class Executor:
                         elif inptype == "string":
                             varname = tokens[2]
                             variables[varname] = input()
+                    elif token == "float":
+                        varname = tokens[1]
+                        if tokens[2] == ":":
+                            value = float(tokens[3])
+                            variables[varname] = value
+                        else:
+                            print("Error: use : to atribute a value to an variable")
+                            sys.exit(1)
+                    elif token == "rand":
+                        varname11 = tokens[1]
+                        varname22 = tokens[2]
+                        if varname11.isdigit():
+                            varname11 = int(varname11)
+                            if varname22.isdigit:
+                                varname22 = int(varname22)
+                                outputvar = tokens[3]
+                                variables[outputvar] = randint(varname11, varname22)
+                            else:
+                                outputvar = tokens[3]
+                                variables[outputvar] = randint(varname11, variables.get(varname22))
+                        elif varname22.isgidit:
+                            varname22 = int(varname22)
+                            outputvar = tokens[3]
+                            variables[outputvar] = randint(variables.get(varname11), varname22)
+                        else:
+                            outputvar = tokens[3]
+                            variables[outputvar] = randint(variables.get(varname11), variables.get(varname22))
                 elif in_if[0]:
                     if token == "if" or token == "while":
                         endnum += 1
@@ -207,7 +235,7 @@ class Executor:
                         while_code.append(" ".join(tokens))
 
 if __name__ == "__main__":
-    version = "1.0"
+    version = "1.1"
     if len(sys.argv) == 1:
         print(f"Wrutu version {version}")
         print(f"Usage: {sys.argv[0]} <file>")
