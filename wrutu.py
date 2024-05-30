@@ -28,6 +28,11 @@ class Executor:
                             endnum += 1
                             in_func[0] = True
                             functions[funcname[0]] = []
+                    elif token == "&&" or token == "":
+                        pass
+                    else:
+                        print("Error: You can only create functions outside of an function")
+                        sys.exit(1)
                 elif in_func[0]:
                     if token == "if" or token == "while":
                         endnum += 1
@@ -177,6 +182,38 @@ class Executor:
                         else:
                             outputvar = tokens[3]
                             variables[outputvar] = randint(variables.get(varname11), variables.get(varname22))
+                    elif token == "list":
+                        varname = tokens[1]
+                        variables[varname] = []
+                    elif token == "listapp":
+                        listvarname = tokens[1]
+                        varname = tokens[2]
+                        variables[listvarname].append(variables.get(varname))
+                    elif token == "listpop":
+                        listvarname = tokens[1]
+                        variables[listvarname].pop()
+                    elif token == "getlistitem":
+                        listvarname = tokens[1]
+                        itempos = tokens[2]
+                        if tokens[3] == ">":
+                            if itempos.isdigit():
+                                outputvar = tokens[4]
+                                variables[outputvar] = variables.get(listvarname)[int(itempos)]
+                            else:
+                                outputvar = tokens[4]
+                                variables[outputvar] = variables.get(listvarname)[variables.get(itempos)]
+                        else:
+                            print("Error: use > to reference the output var")
+                            sys.exit(1)
+                    elif token == "split":
+                        varname = tokens[1]
+                        listvarname = tokens[2]
+                        variables[listvarname] = variables.get(varname).split()
+                    elif token == "&&" or token == "":
+                        pass
+                    else:
+                        print(f"Error: unknown token: {token}")
+                        sys.exit(1)
                 elif in_if[0]:
                     if token == "if" or token == "while":
                         endnum += 1
@@ -235,7 +272,7 @@ class Executor:
                         while_code.append(" ".join(tokens))
 
 if __name__ == "__main__":
-    version = "1.1"
+    version = "1.2"
     if len(sys.argv) == 1:
         print(f"Wrutu version {version}")
         print(f"Usage: {sys.argv[0]} <file>")
