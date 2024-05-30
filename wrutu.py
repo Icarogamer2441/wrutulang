@@ -28,7 +28,7 @@ class Executor:
                             endnum += 1
                             in_func[0] = True
                             functions[funcname[0]] = []
-                    elif token == "&&" or token == "":
+                    elif token == "&&" or token == "" or token == "]":
                         pass
                     else:
                         print("Error: You can only create functions outside of an function")
@@ -209,7 +209,7 @@ class Executor:
                         varname = tokens[1]
                         listvarname = tokens[2]
                         variables[listvarname] = variables.get(varname).split()
-                    elif token == "&&" or token == "":
+                    elif token == "&&" or token == "" or token == "]":
                         pass
                     else:
                         print(f"Error: unknown token: {token}")
