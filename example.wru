@@ -94,4 +94,13 @@ fnc main [
             ]
         ]
     ]
+    && you can use 'file ftype filename' to interact with files. example with all things you can do with it: read: "file read myfile.txt mycontentvar". write: "file write myfile.txt mywritecontentvar". append: "file append myfile.txt myappendcontentvar"
+    listchar msg2 msg2chars
+    showln msg2chars
+    showln \n
+    string teststr : hello;my;friend!
+    splitchar teststr ; splitedaaa
+    showln splitedaaa
+    showln \n
+    && in this language, have an variable named "spc" that have a space has it value
 ]
