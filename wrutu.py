@@ -2,7 +2,7 @@ import sys
 from random import randint
 
 functions = {}
-variables = {}
+variables = {"spc": " "}
 running_while = [False]
 
 class Executor:
@@ -211,6 +211,49 @@ class Executor:
                         variables[listvarname] = variables.get(varname).split()
                     elif token == "&&" or token == "" or token == "]":
                         pass
+                    elif token == "import":
+                        with open(f"{tokens[1]}.wru", "r") as fi:
+                            Executor(fi.read()).execute1()
+                    elif token == "file":
+                        ftype = tokens[1]
+                        if ftype == "read":
+                            filename = variables.get(tokens[2])
+                            with open(filename, "r") as fi:
+                                outputvar = tokens[3]
+                                variables[outputvar] = fi.read()
+                        elif ftype == "write":
+                            filename = variables.get(tokens[2])
+                            with open(filename, "w") as fi:
+                                fi.write(variables.get(tokens[3]))
+                        elif ftype == "append":
+                            filename = variables.get(tokens[2])
+                            with open(filename, "a") as fi:
+                                fi.write(variables.get(tokens[3]))
+                        else:
+                            print("Error: Unknown file interact type. use 'append' or 'read' or 'write'.")
+                            sys.exit(1)
+                    elif token == "listchar":
+                        varname = tokens[1]
+                        outputvar = tokens[2]
+                        variables[outputvar] = list(variables.get(varname))
+                    elif token == "len":
+                        varname = tokens[1]
+                        outputvar = tokens[2]
+                        variables[outputvar] = len(variables.get(varname))
+                    elif token == "splitchar":
+                        varname = tokens[1]
+                        chartosplit = tokens[2]
+                        if chartosplit == "\\n":
+                            outputvar = tokens[3]
+                            variables[outputvar] = variables.get(varname).split("\n")
+                        else:
+                            outputvar = tokens[3]
+                            variables[outputvar] = variables.get(varname).split(chartosplit)
+                    elif token == "join":
+                        varname11 = tokens[1]
+                        varname22 = tokens[2]
+                        outputvar = tokens[3]
+                        variables[outputvar] = variables.get(varname11) + " " + variables.get(varname22)
                     else:
                         print(f"Error: unknown token: {token}")
                         sys.exit(1)
