@@ -8,7 +8,7 @@ fnc main[
 
 ]
 ```
-because this syntax dont work
+because this syntax dont work.
 use:
 ```
 fnc main [
