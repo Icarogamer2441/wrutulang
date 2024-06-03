@@ -1,5 +1,6 @@
 && this is a comment!
 && you can use coments inside and outside of an function
+&& you can use "import filename" to import an file (dont use .wru in the final of the file name)
 
 fnc test [
     int n2 : 10
@@ -103,4 +104,6 @@ fnc main [
     showln splitedaaa
     showln \n
     && in this language, have an variable named "spc" that have a space has it value
+    && you can use "join varname1 varname2 outputvarname" to join the value of two vars with space in it
+    && "join2 varname1 varname2 outputvarname" joins the value of two vars with no space in it
 ]
