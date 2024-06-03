@@ -30,6 +30,9 @@ class Executor:
                             functions[funcname[0]] = []
                     elif token == "&&" or token == "" or token == "]":
                         pass
+                    elif token == "import":
+                        with open(f"{tokens[1]}.wru", "r") as fi:
+                            Executor(fi.read()).execute1()
                     else:
                         print("Error: You can only create functions outside of an function")
                         sys.exit(1)
@@ -211,9 +214,6 @@ class Executor:
                         variables[listvarname] = variables.get(varname).split()
                     elif token == "&&" or token == "" or token == "]":
                         pass
-                    elif token == "import":
-                        with open(f"{tokens[1]}.wru", "r") as fi:
-                            Executor(fi.read()).execute1()
                     elif token == "file":
                         ftype = tokens[1]
                         if ftype == "read":
@@ -254,6 +254,11 @@ class Executor:
                         varname22 = tokens[2]
                         outputvar = tokens[3]
                         variables[outputvar] = variables.get(varname11) + " " + variables.get(varname22)
+                    elif token == "join2":
+                        varname11 = tokens[1]
+                        varname22 = tokens[2]
+                        outputvar = tokens[3]
+                        variables[outputvar] = variables.get(varname11) + variables.get(varname22)
                     else:
                         print(f"Error: unknown token: {token}")
                         sys.exit(1)
@@ -315,7 +320,7 @@ class Executor:
                         while_code.append(" ".join(tokens))
 
 if __name__ == "__main__":
-    version = "1.3"
+    version = "1.4"
     if len(sys.argv) == 1:
         print(f"Wrutu version {version}")
         print(f"Usage: {sys.argv[0]} <file>")
