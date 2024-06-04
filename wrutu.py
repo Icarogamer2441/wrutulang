@@ -298,6 +298,12 @@ class Executor:
                             elif operation[0] == "[":
                                 if variables.get(varname1[0]):
                                     Executor("\n".join(ifcode)).execute2()
+                            elif operation[0] == "starts":
+                                if variables.get(varname1[0]).startswith(varname2[0]):
+                                    Executor("\n".join(ifcode)).execute2()
+                            elif operation[0] == "ends":
+                                if variables.get(varname1[0]).endswith(varname2[0]):
+                                    Executor("\n".join(ifcode)).execute2()
                     else:
                         ifcode.append(" ".join(tokens))
                 elif in_while[0]:
