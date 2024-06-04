@@ -304,6 +304,12 @@ class Executor:
                             elif operation[0] == "ends":
                                 if variables.get(varname1[0]).endswith(variables.get(varname2[0])):
                                     Executor("\n".join(ifcode)).execute2()
+                            elif operation[0] == "notstarts":
+                                if not variables.get(varname1[0]).startswith(variables.get(varname2[0])):
+                                    Executor("\n".join(ifcode)).execute2()
+                            elif operation[0] == "notends":
+                                if not variables.get(varname1[0]).endswith(variables.get(varname2[0])):
+                                    Executor("\n".join(ifcode)).execute2()
                     else:
                         ifcode.append(" ".join(tokens))
                 elif in_while[0]:
@@ -326,7 +332,7 @@ class Executor:
                         while_code.append(" ".join(tokens))
 
 if __name__ == "__main__":
-    version = "1.4"
+    version = "1.5"
     if len(sys.argv) == 1:
         print(f"Wrutu version {version}")
         print(f"Usage: {sys.argv[0]} <file>")
