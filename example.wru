@@ -5,7 +5,7 @@
 fnc test [
     int n2 : 10
     if n1 = n2 [
-        showln " you can use '=' or '!' or '>>' or '<<' or '>' or '<' "
+        showln " you can use '=' or '!' or '>>' or '<<' or '>' or '<' or 'starts' or 'ends' "
         showln \n
     ]
 ]
