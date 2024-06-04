@@ -5,7 +5,7 @@
 fnc test [
     int n2 : 10
     if n1 = n2 [
-        showln " you can use '=' or '!' or '>>' or '<<' or '>' or '<' or 'starts' or 'ends' "
+        showln " you can use '=' or '!' or '>>' or '<<' or '>' or '<' or 'starts' or 'ends' or 'notstarts' or 'notends' "
         showln \n
     ]
 ]
@@ -80,6 +80,7 @@ fnc main [
         showln \spc
         rand 1 10 corrnum
         input int usernum
+        && you can use "input string varname" to string inputs!
         if usernum = corrnum [
             showln " Correct! "
             showln \n
@@ -101,6 +102,7 @@ fnc main [
     showln \n
     string teststr : hello;my;friend!
     splitchar teststr ; splitedaaa
+    && you can use "splitchar varname \n outputvar" too
     showln splitedaaa
     showln \n
     && in this language, have an variable named "spc" that have a space has it value
