@@ -1,0 +1,170 @@
+fnc HandleFileError [
+    if filename notends extension [
+        showln " Error: Use .char file extension! "
+        showln \n
+    ]
+]
+
+fnc main [
+    showln " Your .char file? > "
+    showln \spc
+    input string filename
+    string extension : .char
+    if filename ends extension [
+        file read filename code
+        listchar code codechars
+        len code codelen
+        int memnum : 0
+        int meminc : 1
+        int memdec : -1
+        string incchar : a
+        string decchar : r
+        string printchar : p
+        string memshowchar : m
+        int charpos : -1
+        int charinc : 1
+        int nl : 0
+        int a : 1
+        int b : 2
+        int c : 3
+        int d : 4
+        int e : 5
+        int f : 6
+        int g : 7
+        int h : 8
+        int i : 9
+        int j : 10
+        int k : 11
+        int l : 12
+        int m : 13
+        int n : 14
+        int o : 15
+        int p : 16
+        int q : 17
+        int r : 18
+        int s : 19
+        int t : 20
+        int u : 21
+        int v : 22
+        int w : 23
+        int x : 24
+        int y : 25
+        int z : 26
+        int ! : 27
+        int ? : 28
+        int sp : 29
+
+        while [
+            mod charpos < charinc
+            if charpos >> codelen [
+                stop
+            ]
+            if charpos < codelen [
+                getlistitem codechars charpos > token
+                if token = incchar [
+                    mod memnum < meminc
+                ]
+                if token = decchar [
+                    mod memnum < memdec
+                ]
+                if token = printchar [
+                    if memnum = nl [
+                        showln \n
+                    ]
+                    if memnum = a [
+                        showln " a "
+                    ]
+                    if memnum = b [
+                        showln " b "
+                    ]
+                    if memnum = c [
+                        showln " c "
+                    ]
+                    if memnum = d [
+                        showln " d "
+                    ]
+                    if memnum = e [
+                        showln " e "
+                    ]
+                    if memnum = f [
+                        showln " f "
+                    ]
+                    if memnum = g [
+                        showln " g "
+                    ]
+                    if memnum = h [
+                        showln " h "
+                    ]
+                    if memnum = i [
+                        showln " i "
+                    ]
+                    if memnum = j [
+                        showln " j "
+                    ]
+                    if memnum = k [
+                        showln " k "
+                    ]
+                    if memnum = l [
+                        showln " l "
+                    ]
+                    if memnum = m [
+                        showln " m "
+                    ]
+                    if memnum = n [
+                        showln " n "
+                    ]
+                    if memnum = o [
+                        showln " o "
+                    ]
+                    if memnum = p [
+                        showln " p "
+                    ]
+                    if memnum = q [
+                        showln " q "
+                    ]
+                    if memnum = r [
+                        showln " r "
+                    ]
+                    if memnum = s [
+                        showln " s "
+                    ]
+                    if memnum = t [
+                        showln " t "
+                    ]
+                    if memnum = u [
+                        showln " u "
+                    ]
+                    if memnum = v [
+                        showln " v "
+                    ]
+                    if memnum = w [
+                        showln " w "
+                    ]
+                    if memnum = x [
+                        showln " x "
+                    ]
+                    if memnum = y [
+                        showln " y "
+                    ]
+                    if memnum = z [
+                        showln " z "
+                    ]
+                    if memnum = ! [
+                        showln " ! "
+                    ]
+                    if memnum = ? [
+                        showln " ? "
+                    ]
+                    if memnum = sp [
+                        showln \spc
+                    ]
+                ]
+                if token = memshowchar [
+                    showln memnum
+                    showln \n
+                ]
+            ]
+        ]
+    ]
+    call HandleFileError
+]
