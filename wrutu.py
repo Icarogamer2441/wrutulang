@@ -259,6 +259,10 @@ class Executor:
                         varname22 = tokens[2]
                         outputvar = tokens[3]
                         variables[outputvar] = variables.get(varname11) + variables.get(varname22)
+                    elif token == "filenl":
+                        filevarname = tokens[1]
+                        with open(variables.get(filevarname), "a") as fi:
+                            fi.write("\n")
                     else:
                         print(f"Error: unknown token: {token}")
                         sys.exit(1)
@@ -332,7 +336,7 @@ class Executor:
                         while_code.append(" ".join(tokens))
 
 if __name__ == "__main__":
-    version = "1.5"
+    version = "1.6"
     if len(sys.argv) == 1:
         print(f"Wrutu version {version}")
         print(f"Usage: {sys.argv[0]} <file>")
