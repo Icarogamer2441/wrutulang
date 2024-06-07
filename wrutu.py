@@ -3,7 +3,7 @@ from random import randint
 import subprocess as sp
 
 functions = {}
-variables = {"spc": " "}
+variables = {"spc": " ", "nl": "\n"}
 running_while = [False]
 
 class Executor:
@@ -269,6 +269,11 @@ class Executor:
                         varname22 = tokens[2]
                         outputvar = tokens[3]
                         variables[outputvar] = variables.get(varname11) + variables.get(varname22)
+                    elif token == "joinlist":
+                        varname11 = tokens[1]
+                        varname22 = tokens[2]
+                        outputvar = tokens[3]
+                        variables[outputvar] = variables.get(varname22).join(variables.get(varname11))
                     elif token == "filenl":
                         filevarname = tokens[1]
                         with open(variables.get(filevarname), "a") as fi:
@@ -354,7 +359,7 @@ class Executor:
                         while_code.append(" ".join(tokens))
 
 if __name__ == "__main__":
-    version = "1.7"
+    version = "1.8"
     if len(sys.argv) == 1:
         print(f"Wrutu version {version}")
         print(f"Usage: {sys.argv[0]} <file>")
