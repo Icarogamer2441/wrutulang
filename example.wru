@@ -85,27 +85,7 @@ fnc main [
     showln " use 11 or more to exit the loop "
     showln \n
     int numm : 11
-    while [
-        showln " guess the number from 1 to 10 > "
-        showln \spc
-        rand 1 10 corrnum
-        input int usernum
-        && you can use "input string varname" to string inputs!
-        if usernum = corrnum [
-            showln " Correct! "
-            showln \n
-            stop
-        ]
-        if usernum ! corrnum [
-            if usernum >> numm [
-                stop
-            ]
-            if usernum < numm [
-                showln " Incorrect! try again. "
-                showln \n
-            ]
-        ]
-    ]
+    
     && you can use 'file ftype filename' to interact with files. example with all things you can do with it: read: "file read myfile.txt mycontentvar". write: "file write myfile.txt mywritecontentvar". append: "file append myfile.txt myappendcontentvar"
     listchar msg2 msg2chars
     showln msg2chars
@@ -125,4 +105,9 @@ fnc main [
     int number3 : 10
     call test2 number3
     && you can use "syscmd varname" to run a command from your OS
+    && an variable with the name "nl" already exists to you use with joinlist if you want to make an join to add new line
+    joinlist splitedaaa nl notsplitedaaa
+    && "joinlist varname splititemvarname outputvarname"
+    showln notsplitedaaa
+    showln \n
 ]
