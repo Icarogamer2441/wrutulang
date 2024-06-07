@@ -105,7 +105,7 @@ fnc main [
     int number3 : 10
     call test2 number3
     && you can use "syscmd varname" to run a command from your OS
-    && an variable with the name "nl" already exists to you use with joinlist if you want to make an join to add new line
+    && an variable with the name "nl" already exists to you use with joinlist if you want to make an join to add new line to an list or string
     joinlist splitedaaa nl notsplitedaaa
     && "joinlist varname splititemvarname outputvarname"
     showln notsplitedaaa
