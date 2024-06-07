@@ -1,5 +1,6 @@
 import sys
 from random import randint
+import subprocess as sp
 
 functions = {}
 variables = {"spc": " "}
@@ -27,7 +28,7 @@ class Executor:
                         if tokens[2] == "[":
                             endnum += 1
                             in_func[0] = True
-                            functions[funcname[0]] = []
+                            functions[funcname[0]] = {"code": []}
                     elif token == "&&" or token == "" or token == "]":
                         pass
                     elif token == "import":
@@ -39,20 +40,20 @@ class Executor:
                 elif in_func[0]:
                     if token == "if" or token == "while":
                         endnum += 1
-                        functions[funcname[0]].append(" ".join(tokens))
+                        functions[funcname[0]]["code"].append(" ".join(tokens))
                     elif token == "]":
                         if endnum < 1:
                             pass
                         else:
                             endnum -= 1
-                            functions[funcname[0]].append(" ".join(tokens))
+                            functions[funcname[0]]["code"].append(" ".join(tokens))
                     elif endnum <= 0:
                         in_func[0] = False
                         endnum = 0
-                        functions[funcname[0]].pop()
+                        functions[funcname[0]]["code"].pop()
                     else:
-                        functions[funcname[0]].append(" ".join(tokens))
-        Executor("\n".join(functions["main"])).execute2()
+                        functions[funcname[0]]["code"].append(" ".join(tokens))
+        Executor("\n".join(functions["main"]["code"])).execute2()
 
     def execute2(self):
         lines = self.code.split("\n")
@@ -104,7 +105,13 @@ class Executor:
                             sys.exit(1)
                     elif token == "call":
                         funcname = tokens[1]
-                        Executor("\n".join(functions[funcname])).execute2()
+                        Executor("\n".join(functions[funcname]["code"])).execute2()
+                        if len(tokens) > 2:
+                            params = tokens[3:]
+                            paramnum = 0
+                            for param in params:
+                                paramnum += 1
+                                variables[functions[funcname][paramnum]] = variables.get(param)
                     elif token == "if":
                         varname1[0] = tokens[1]
                         operation[0] = tokens[2]
@@ -212,7 +219,7 @@ class Executor:
                         varname = tokens[1]
                         listvarname = tokens[2]
                         variables[listvarname] = variables.get(varname).split()
-                    elif token == "&&" or token == "" or token == "]":
+                    elif token == "&&" or token == "" or token == "]" or token.startswith(" "):
                         pass
                     elif token == "file":
                         ftype = tokens[1]
@@ -263,8 +270,16 @@ class Executor:
                         filevarname = tokens[1]
                         with open(variables.get(filevarname), "a") as fi:
                             fi.write("\n")
+                    elif token == "param":
+                        funcname = tokens[1]
+                        paramname = tokens[2]
+                        paramvarname = tokens[3]
+                        functions[funcname][paramname] = paramvarname
+                    elif token == "syscmd":
+                        cmdvarname = tokens[1]
+                        sp.run(variables.get(cmdvarname), shell=True)
                     else:
-                        print(f"Error: unknown token: {token}")
+                        print(f"Error: unknown token: '{token}'")
                         sys.exit(1)
                 elif in_if[0]:
                     if token == "if" or token == "while":
@@ -336,7 +351,7 @@ class Executor:
                         while_code.append(" ".join(tokens))
 
 if __name__ == "__main__":
-    version = "1.6"
+    version = "1.7"
     if len(sys.argv) == 1:
         print(f"Wrutu version {version}")
         print(f"Usage: {sys.argv[0]} <file>")
