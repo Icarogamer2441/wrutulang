@@ -105,13 +105,13 @@ class Executor:
                             sys.exit(1)
                     elif token == "call":
                         funcname = tokens[1]
-                        Executor("\n".join(functions[funcname]["code"])).execute2()
                         if len(tokens) > 2:
                             params = tokens[3:]
                             paramnum = 0
                             for param in params:
                                 paramnum += 1
                                 variables[functions[funcname][paramnum]] = variables.get(param)
+                        Executor("\n".join(functions[funcname]["code"])).execute2()
                     elif token == "if":
                         varname1[0] = tokens[1]
                         operation[0] = tokens[2]
