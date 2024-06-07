@@ -107,10 +107,12 @@ class Executor:
                         funcname = tokens[1]
                         if len(tokens) > 2:
                             params = tokens[2:]
-                            paramnum = 0
-                            for param in params:
-                                paramnum += 1
-                                variables[functions[funcname][paramnum]] = variables.get(param)
+                            param_keys = list(functions[funcname].keys())
+                            for i, param in enumerate(params):
+                                if param == "code":
+                                    continue
+                                else:
+                                    variables[param_keys[i]] = variables.get(param, param)
                         Executor("\n".join(functions[funcname]["code"])).execute2()
                     elif token == "if":
                         varname1[0] = tokens[1]
