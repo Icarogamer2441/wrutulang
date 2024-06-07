@@ -106,7 +106,7 @@ class Executor:
                     elif token == "call":
                         funcname = tokens[1]
                         if len(tokens) > 2:
-                            params = tokens[3:]
+                            params = tokens[2:]
                             paramnum = 0
                             for param in params:
                                 paramnum += 1
