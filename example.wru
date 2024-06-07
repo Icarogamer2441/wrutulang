@@ -85,7 +85,12 @@ fnc main [
     showln " use 11 or more to exit the loop "
     showln \n
     int numm : 11
-    
+    showln " Say an message > "
+    showln \spc
+    input string msg
+    && you can use "input int outputvarname" too!
+    showln msg
+    showln \n
     && you can use 'file ftype filename' to interact with files. example with all things you can do with it: read: "file read myfile.txt mycontentvar". write: "file write myfile.txt mywritecontentvar". append: "file append myfile.txt myappendcontentvar"
     listchar msg2 msg2chars
     showln msg2chars
@@ -109,5 +114,8 @@ fnc main [
     joinlist splitedaaa nl notsplitedaaa
     && "joinlist varname splititemvarname outputvarname"
     showln notsplitedaaa
+    showln \n
+    rand 1 10 numbaaa
+    showln numbaaa
     showln \n
 ]
