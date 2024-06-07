@@ -124,4 +124,5 @@ fnc main [
     param test2 myparam n3
     int number3 : 10
     call test2 number3
+    && you can use "syscmd varname" to run a command from your OS
 ]
