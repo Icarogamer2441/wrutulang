@@ -8,6 +8,7 @@ fnc test [
         showln " you can use '=' or '!' or '>>' or '<<' or '>' or '<' or 'starts' or 'ends' or 'notstarts' or 'notends' "
         showln \n
     ]
+    && the variable n1 has been defined in main function
 ]
 
 fnc checkIsTrue [
@@ -29,6 +30,15 @@ fnc repeat [
         showln " IM IN A WHILE LOOP! "
         showln \n
     ]
+]
+
+fnc test2 [
+    int n4 : 5
+    if n4 ! n3 [
+        showln " It's not equal! "
+        showln \n
+    ]
+    && the variable n3 has been defined in main function
 ]
 
 fnc main [
@@ -109,4 +119,9 @@ fnc main [
     && you can use "join varname1 varname2 outputvarname" to join the value of two vars with space in it
     && "join2 varname1 varname2 outputvarname" joins the value of two vars with no space in it
     && you can use "filenl filevarname" to add newline in a file
+    && you can use "param funcname paramname paramvarname" (paramvarname is an name to an unexistent variable to create to use in an function)
+    && if you made an param to an function. ex: "param myfunc param1 n1" and you want to call the function with this param, you can use: "call myfunc varname" (varname is the name of an existent variable to be the value of the variable param)
+    param test2 myparam n3
+    int number3 : 10
+    call test2 number3
 ]
