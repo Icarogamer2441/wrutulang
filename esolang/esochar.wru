@@ -23,7 +23,7 @@ fnc main [
         string memshowchar : m
         int charpos : -1
         int charinc : 1
-        int nl : 0
+        int nll : 0
         int a : 1
         int b : 2
         int c : 3
@@ -68,7 +68,7 @@ fnc main [
                     mod memnum < memdec
                 ]
                 if token = printchar [
-                    if memnum = nl [
+                    if memnum = nll [
                         showln \n
                     ]
                     if memnum = a [
