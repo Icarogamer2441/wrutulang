@@ -289,6 +289,21 @@ class Executor:
                     elif token == "run":
                         varname = tokens[1]
                         Executor(variables.get(varname)).execute2()
+                    elif token == "toint":
+                        varname = tokens[1]
+                        variables[varname] = int(variables.get(varname))
+                    elif token == "tofloat":
+                        varname = tokens[1]
+                        variables[varname] = float(variables.get(varname))
+                    elif token == "tobool":
+                        varname = tokens[1]
+                        if isinstance(variables.get(varname), str) or isinstance(variables.get(varname), list):
+                            variables[varname] = 1 if len(variables.get(varname)) > 0 else 0
+                        else:
+                            variables[varname] = 1 if variables.get(varname) > 0 else 0
+                    elif token == "tostring":
+                        varname = tokens[1]
+                        variables[varname] = str(variables.get(varname))
                     else:
                         print(f"Error: unknown token: '{token}'")
                         sys.exit(1)
