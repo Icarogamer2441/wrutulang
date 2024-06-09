@@ -118,4 +118,7 @@ fnc main [
     rand 1 10 numbaaa
     showln numbaaa
     showln \n
+    string myrunscript : showln " im running in an 'run' function! "
+    run myrunscript
+    && you can use "toint varname" to convert the value of the variable to integer. you can use "tofloat", "tobool" and "tostring" too!
 ]
