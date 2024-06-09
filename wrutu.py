@@ -1,6 +1,21 @@
 import sys
 from random import randint
 import subprocess as sp
+# Os is needed to check where's the "wrutulibs" dir (the dir for libs in wrutulang)
+import os
+import time
+
+def find_wrutulibs_dir():
+    current_dir = os.path.abspath('.')
+    while True:
+        for root, dirs, files in os.walk(current_dir):
+            if 'wrutulibs' in dirs:
+                return os.path.join(root, 'wrutulibs')
+        parent_dir = os.path.dirname(current_dir)
+        if parent_dir == current_dir:
+            break
+        current_dir = parent_dir
+    return None
 
 functions = {}
 variables = {"spc": " ", "nl": "\n"}
@@ -34,6 +49,14 @@ class Executor:
                     elif token == "import":
                         with open(f"{tokens[1]}.wru", "r") as fi:
                             Executor(fi.read()).execute1()
+                    elif token == "libimport":
+                        filename = tokens[1]
+                        target_directory = find_wrutulibs_dir()
+                        if target_directory:
+                            with open(f"{target_directory}/{filename}.wru", "r") as lib:
+                                Executor(lib.read()).execute1()
+                        else:
+                            print("Directory 'wrutulibs' not found")
                     else:
                         print("Error: You can only create functions outside of an function")
                         sys.exit(1)
@@ -304,6 +327,9 @@ class Executor:
                     elif token == "tostring":
                         varname = tokens[1]
                         variables[varname] = str(variables.get(varname))
+                    elif token == "continuein":
+                        sleeptime = tokens[1]
+                        time.sleep(int(sleeptime) if sleeptime.isdigit() else variables.get(sleeptime))
                     else:
                         print(f"Error: unknown token: '{token}'")
                         sys.exit(1)
