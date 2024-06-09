@@ -286,6 +286,9 @@ class Executor:
                     elif token == "syscmd":
                         cmdvarname = tokens[1]
                         sp.run(variables.get(cmdvarname), shell=True)
+                    elif token == "run":
+                        varname = tokens[1]
+                        Executor(variables.get(varname)).execute2()
                     else:
                         print(f"Error: unknown token: '{token}'")
                         sys.exit(1)
@@ -359,7 +362,7 @@ class Executor:
                         while_code.append(" ".join(tokens))
 
 if __name__ == "__main__":
-    version = "1.8"
+    version = "1.9"
     if len(sys.argv) == 1:
         print(f"Wrutu version {version}")
         print(f"Usage: {sys.argv[0]} <file>")
