@@ -1,6 +1,7 @@
 && this is a comment!
 && you can use coments inside and outside of an function
 && you can use "import filename" to import an file (dont use .wru in the final of the file name)
+&& you can use "libimport filename" to import an file as an lib (dont use .wru in the final of the file name). you need to have an dir named "wrutulibs" in some directory or in the same directory (is recomended that you use in "/home/youruser/wrutulibs/" in linux, or "C:/Users/Youruser/wrutulibs/" in windows, but you can use in other directory)
 
 fnc test [
     int n2 : 10
@@ -121,4 +122,9 @@ fnc main [
     string myrunscript : showln " im running in an 'run' function! "
     run myrunscript
     && you can use "toint varname" to convert the value of the variable to integer. you can use "tofloat", "tobool" and "tostring" too!
+    continuein 2
+    showln " I runned after 2 seconds! "
+    int waittime : 2
+    continuein waittime
+    showln " I runned after 2 seconds and i used an variable! "
 ]
