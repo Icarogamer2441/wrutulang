@@ -381,6 +381,38 @@ class Executor:
                             elif operation[0] == "notends":
                                 if not variables.get(varname1[0]).endswith(variables.get(varname2[0])):
                                     Executor("\n".join(ifcode)).execute2()
+                            elif operation[0] == "isa":
+                                if variables.get(varname2[0]) == "string":
+                                    if isinstance(variables.get(varname1[0]), str):
+                                        Executor("\n".join(ifcode)).execute2()
+                                elif variables.get(varname2[0]) == "int":
+                                    if isinstance(variables.get(varname1[0]), int):
+                                        Executor("\n".join(ifcode)).execute2()
+                                elif variables.get(varname2[0]) == "float":
+                                    if isinstance(variables.get(varname1[0]), float):
+                                        Executor("\n".join(ifcode)).execute2()
+                                elif variables.get(varname2[0]) == "list":
+                                    if isinstance(variables.get(varname1[0]), list):
+                                        Executor("\n".join(ifcode)).execute2()
+                                else:
+                                    print("Error: you can only use 'string', 'int', 'float' or 'list'. bool is not avaliable because bool is an integer (1 for true (ok) and 0 for false (no))")
+                                    sys.exit(1)
+                            elif operation[0] == "isnota":
+                                if not variables.get(varname2[0]) == "string":
+                                    if isinstance(variables.get(varname1[0]), str):
+                                        Executor("\n".join(ifcode)).execute2()
+                                elif not variables.get(varname2[0]) == "int":
+                                    if isinstance(variables.get(varname1[0]), int):
+                                        Executor("\n".join(ifcode)).execute2()
+                                elif not variables.get(varname2[0]) == "float":
+                                    if isinstance(variables.get(varname1[0]), float):
+                                        Executor("\n".join(ifcode)).execute2()
+                                elif not variables.get(varname2[0]) == "list":
+                                    if isinstance(variables.get(varname1[0]), list):
+                                        Executor("\n".join(ifcode)).execute2()
+                                else:
+                                    print("Error: you can only use 'string', 'int', 'float' or 'list'. bool is not avaliable because bool is an integer (1 for true (ok) and 0 for false (no))")
+                                    sys.exit(1)
                     else:
                         ifcode.append(" ".join(tokens))
                 elif in_while[0]:
@@ -403,7 +435,7 @@ class Executor:
                         while_code.append(" ".join(tokens))
 
 if __name__ == "__main__":
-    version = "1.9"
+    version = "2.0"
     if len(sys.argv) == 1:
         print(f"Wrutu version {version}")
         print(f"Usage: {sys.argv[0]} <file>")
