@@ -6,7 +6,7 @@
 fnc test [
     int n2 : 10
     if n1 = n2 [
-        showln " you can use '=' or '!' or '>>' or '<<' or '>' or '<' or 'starts' or 'ends' or 'notstarts' or 'notends' "
+        showln " you can use '=' or '!' or '>>' or '<<' or '>' or '<' or 'starts' or 'ends' or 'notstarts' or 'notends' or 'isa' or 'isnota' "
         showln \n
     ]
     && the variable n1 has been defined in main function
