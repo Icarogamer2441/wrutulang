@@ -1,0 +1,158 @@
+fnc int8 [
+    int maxlimit : 99999999
+    if arg2 > maxlimit [
+        showln " Error: use an lower than 99999999. you used more than 99999999 "
+        showln \n
+    ]
+    if arg2 << maxlimit [
+        string defint : int
+        tostring arg2
+        join defint arg1 joined
+        string a : :
+        join joined a joined
+        join joined arg2 final
+        run final
+    ]
+]
+
+fnc int5 [
+    int maxlimit : 99999
+    if arg2 > maxlimit [
+        showln " Error: use a value lower than 99999999. you used: "
+        showln \spc
+        showln arg2
+        showln \n
+    ]
+    if arg2 << maxlimit [
+        string defint : int
+        tostring arg2
+        join defint arg1 joined
+        string a : :
+        join joined a joined
+        join joined arg2 final
+        run final
+    ]
+]
+
+fnc int10 [
+    int maxlimit : 9999999999
+    if arg2 > maxlimit [
+        showln " Error: use a value lower than 9999999999. you used: "
+        showln \spc
+        showln arg2
+        showln \n
+    ]
+    if arg2 << maxlimit [
+        string defint : int
+        tostring arg2
+        join defint arg1 joined
+        string a : :
+        join joined a joined
+        join joined arg2 final
+        run final
+    ]
+]
+
+fnc int15 [
+    int maxlimit : 999999999999999
+    if arg2 > maxlimit [
+        showln " Error: use a value lower than 999999999999999. you used: "
+        showln \spc
+        showln arg2
+        showln \n
+    ]
+    if arg2 << maxlimit [
+        string defint : int
+        tostring arg2
+        join defint arg1 joined
+        string a : :
+        join joined a joined
+        join joined arg2 final
+        run final
+    ]
+]
+
+fnc ErrorInvalid [
+    showln " Error: Invalid item named ' "
+    showln \spc
+    showln arg1
+    showln " '. Use: "
+    showln \spc
+    showln arg2
+    showln \n
+]
+
+fnc ErrorIncorrect [
+    showln " Error: Incorrect thing in something! this is causing the 'incorrect' error: ' "
+    showln \spc
+    showln arg1
+    showln "   '. Use: "
+    showln \spc
+    showln arg2
+    showln \n
+]
+
+fnc ErrorIllegalToken [
+    showln " Error: Illegal token: ' "
+    showln \spc
+    showln arg1
+    showln " '. Use: "
+    showln \spc
+    showln arg2
+    showln \n
+]
+
+fnc ErrorGreaterThan [
+    showln " Error: Your number is so much big and it's greater than "
+    showln \spc
+    showln arg1
+    showln \spc
+    showln " limit "
+    showln " '. Use a number lower than "
+    showln \spc
+    showln arg2
+    showln " ! "
+    showln \n
+]
+
+fnc ErrorLowerThan [
+    showln " Error: Your number is so much big and it's lower than "
+    showln \spc
+    showln arg1
+    showln \spc
+    showln " limit "
+    showln " '. Use a number greater than "
+    showln \spc
+    showln arg2
+    showln " ! "
+    showln \n
+]
+
+fnc main [
+    param int8 arg1 arg1
+    param int8 arg2 arg2
+
+    param int5 arg1 arg1
+    param int5 arg2 arg2
+
+    param int10 arg1 arg1
+    param int10 arg2 arg2
+
+    param int15 arg1 arg1
+    param int15 arg2 arg2
+
+    param ErrorInvalid arg1 arg1
+    param ErrorInvalid arg2 arg2
+
+    param ErrorIncorrect arg1 arg1
+    param ErrorIncorrect arg2 arg2
+
+    param ErrorIllegalToken arg1 arg1
+    param ErrorIllegalToken arg2 arg2
+
+    param ErrorGreaterThan arg1 arg1
+    param ErrorGreaterThan arg2 arg2
+
+    param ErrorLowerThan arg1 arg1
+    param ErrorLowerThan arg2 arg2
+]
