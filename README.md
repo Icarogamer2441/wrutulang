@@ -28,3 +28,6 @@ showln " Hello world! "
 
 ## token system
 always use spaces if you want to do something, because tokens in this language is separated using spaces
+
+## pronounce
+you can pronounce has: uhutulang (in portuguese: uhutuleng)
