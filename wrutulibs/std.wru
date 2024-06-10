@@ -86,7 +86,7 @@ fnc ErrorIncorrect [
     showln " Error: Incorrect thing in something! this is causing the 'incorrect' error: ' "
     showln \spc
     showln arg1
-    showln "   '. Use: "
+    showln " '. Use: "
     showln \spc
     showln arg2
     showln \n
@@ -108,7 +108,7 @@ fnc ErrorGreaterThan [
     showln arg1
     showln \spc
     showln " limit "
-    showln " '. Use a number lower than "
+    showln " . Use a number lower than "
     showln \spc
     showln arg2
     showln " ! "
@@ -121,7 +121,7 @@ fnc ErrorLowerThan [
     showln arg1
     showln \spc
     showln " limit "
-    showln " '. Use a number greater than "
+    showln " . Use a number greater than "
     showln \spc
     showln arg2
     showln " ! "
