@@ -127,4 +127,13 @@ fnc main [
     int waittime : 2
     continuein waittime
     showln " I runned after 2 seconds and i used an variable! "
+    string verifytype : string
+    && you can use "string", "float", "int" and "list"
+    if waittime isa verifytype [
+        showln " waittime variable is an string! "
+        showln \n
+    ]
+    if waittime isnota verifytype [
+        showln " waittime variable is not an string! "
+    ]
 ]
