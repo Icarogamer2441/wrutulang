@@ -128,6 +128,53 @@ fnc ErrorLowerThan [
     showln \n
 ]
 
+fnc ErrorInvallidType [
+    showln " Error: Invallid type. Use type: "
+    showln \spc
+    showln arg1
+    showln \n
+]
+
+fnc showInt [
+    string typecheck : int
+    if arg1 isa typecheck [
+        showln arg1
+    ]
+    if arg1 isnota typecheck [
+        call ErrorInvallidType typecheck
+    ]
+]
+
+fnc showFloat [
+    string typecheck : float
+    if arg1 isa typecheck [
+        showln arg1
+    ]
+    if arg1 isnota typecheck [
+        call ErrorInvallidType typecheck
+    ]
+]
+
+fnc showString [
+    string typecheck : string
+    if arg1 isa typecheck [
+        showln arg1
+    ]
+    if arg1 isnota typecheck [
+        call ErrorInvallidType typecheck
+    ]
+]
+
+fnc showList [
+    string typecheck : list
+    if arg1 isa typecheck [
+        showln arg1
+    ]
+    if arg1 isnota typecheck [
+        call ErrorInvallidType typecheck
+    ]
+]
+
 fnc main [
     param int8 arg1 arg1
     param int8 arg2 arg2
@@ -155,4 +202,14 @@ fnc main [
 
     param ErrorLowerThan arg1 arg1
     param ErrorLowerThan arg2 arg2
+
+    param ErrorInvallidType arg1 arg1
+
+    param showInt arg1 arg1
+
+    param showFloat arg1 arg1
+
+    param showString arg1 arg1
+    
+    param showList arg1 arg1
 ]
