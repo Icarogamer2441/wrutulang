@@ -452,7 +452,7 @@ class Executor:
                         while_code.append(" ".join(tokens))
 
 if __name__ == "__main__":
-    version = "2.0"
+    version = "2.1"
     if len(sys.argv) == 1:
         print(f"Wrutu version {version}")
         print(f"Usage: {sys.argv[0]} <file>")
