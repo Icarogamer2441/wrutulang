@@ -330,6 +330,23 @@ class Executor:
                     elif token == "continuein":
                         sleeptime = tokens[1]
                         time.sleep(int(sleeptime) if sleeptime.isdigit() else variables.get(sleeptime))
+                    elif token == "list2":
+                        listname = tokens[1]
+                        variables[listname] = {}
+                    elif token == "list2app":
+                        listname = tokens[1]
+                        itemname = variables.get(tokens[2])
+                        itemvalue = variables.get(tokens[3])
+                        variables[listname][itemname] = itemvalue
+                    elif token == "getlist2item":
+                        listname = tokens[1]
+                        itemname = variables.get(tokens[2])
+                        if tokens[3] == ">":
+                            outputvarname = tokens[4]
+                            variables[outputvarname] = variables.get(listname).get(itemname)
+                    elif token == "list2pop":
+                        listname = tokens[1]
+                        variables[listname].popitem()
                     else:
                         print(f"Error: unknown token: '{token}'")
                         sys.exit(1)
