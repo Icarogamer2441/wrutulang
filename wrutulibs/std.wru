@@ -175,6 +175,11 @@ fnc showList [
     ]
 ]
 
+fnc shownl [
+    showln arg1
+    showln \n
+]
+
 fnc main [
     param int8 arg1 arg1
     param int8 arg2 arg2
@@ -212,4 +217,6 @@ fnc main [
     param showString arg1 arg1
     
     param showList arg1 arg1
+
+    param shownl arg1 arg1
 ]
