@@ -6,7 +6,7 @@
 fnc test [
     int n2 : 10
     if n1 = n2 [
-        showln " you can use '=' or '!' or '>>' or '<<' or '>' or '<' or 'starts' or 'ends' or 'notstarts' or 'notends' or 'isa' or 'isnota' "
+        showln " you can use '=' or '!' or '>>' or '<<' or '>' or '<' or 'starts' or 'ends' or 'notstarts' or 'notends' "
         showln \n
     ]
     && the variable n1 has been defined in main function
@@ -121,12 +121,15 @@ fnc main [
     showln \n
     string myrunscript : showln " im running in an 'run' function! "
     run myrunscript
+    showln \n
     && you can use "toint varname" to convert the value of the variable to integer. you can use "tofloat", "tobool" and "tostring" too!
     continuein 2
     showln " I runned after 2 seconds! "
+    showln \n
     int waittime : 2
     continuein waittime
     showln " I runned after 2 seconds and i used an variable! "
+    showln \n
     string verifytype : string
     && you can use "string", "float", "int" and "list"
     if waittime isa verifytype [
@@ -135,5 +138,18 @@ fnc main [
     ]
     if waittime isnota verifytype [
         showln " waittime variable is not an string! "
+        showln \n
     ]
+    list2 mylist2
+    string myitemname : item1
+    string myitemvalue : hello!
+    list2app mylist2 myitemname myitemvalue
+    showln mylist2
+    showln \n
+    getlist2item mylist2 myitemname > myitemnamevalue
+    showln myitemnamevalue
+    showln \n
+    list2pop mylist2
+    showln mylist2
+    showln \n
 ]
