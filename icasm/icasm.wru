@@ -1,0 +1,243 @@
+libimport std
+
+fnc main [
+    showln " What's you .icasm file? > "
+    showln \spc
+    input string filetoopen
+    string extension : .icasm
+    if filetoopen ends extension [
+        file read filetoopen code
+        string printkeyword : write
+        string endtoken : ;
+        string pushkeyword : push
+        string printstackkeyword : print
+        string printstackanlkeyword : printnl
+        string showstackkeyword : stack
+        string shownewlinekeyword : nl
+        string pushstrkeyword : push_str
+        string popkeyword : pop
+        string sumkeyword : sum
+        string sumstrkeyword : sum_str
+        string printmovkeyword : ptrmov
+        string movkeyword : mov
+        string showmempointskeyword : mem
+        split code tokens
+        len tokens tokenslen
+        int incpos : 1
+        int tokenpos : -1
+        list ptrmsg
+        bool inPrintMsg : no
+        bool inPush : no
+        bool inPushStr : no
+        bool inMov : no
+        bool inMovPrint : no
+        bool inNormalMode : ok
+        list stack
+        list2 mempoints
+        string pointname : max
+        string pointvalue : 
+        list2app mempoints pointname pointvalue
+        string pointname : mbx
+        list2app mempoints pointname pointvalue
+        string pointname : mcx
+        list2app mempoints pointname pointvalue
+        string pointname : mdx
+        list2app mempoints pointname pointvalue
+        string pointname : mex
+        list2app mempoints pointname pointvalue
+        string pointname : mfx
+        list2app mempoints pointname pointvalue
+        string pointname : nax
+        list2app mempoints pointname pointvalue
+        string pointname : nbx
+        list2app mempoints pointname pointvalue
+        string pointname : ncx
+        list2app mempoints pointname pointvalue
+        string pointname : ndx
+        list2app mempoints pointname pointvalue
+        string pointname : nex
+        list2app mempoints pointname pointvalue
+        string pointname : nfx
+        list2app mempoints pointname pointvalue
+        len mempoints realpointslen
+
+        while [
+            mod tokenpos < incpos
+
+            if tokenpos >> tokenslen [
+                stop
+            ]
+            if tokenpos < tokenslen [
+                len mempoints pointslen
+                getlistitem tokens tokenpos > token
+                if inNormalMode [
+                    if token = printkeyword [
+                        bool inPrintMsg : ok
+                        bool inNormalMode : no
+                    ]
+                    if token = pushkeyword [
+                        bool inNormalMode : no
+                        bool inPush : ok
+                    ]
+                    if token = printstackkeyword [
+                        int minusone : -1
+                        getlistitem stack minusone > finalstack
+                        showln finalstack
+                        listpop stack
+                    ]
+                    if token = printstackanlkeyword [
+                        int minusone : -1
+                        getlistitem stack minusone > finalstack
+                        call shownl finalstack
+                        listpop stack
+                    ]
+                    if token = showstackkeyword [
+                        showln stack
+                    ]
+                    if token = shownewlinekeyword [
+                        showln \n
+                    ]
+                    if token = pushstrkeyword [
+                        bool inNormalMode : no
+                        bool inPushStr : ok
+                    ]
+                    if token = popkeyword [
+                        listpop stack
+                    ]
+                    if token = sumkeyword [
+                        len stack stacklen
+                        int decnum : -1
+                        mod stacklen < decnum
+                        getlistitem stack stacklen > finalstack
+                        mod stacklen < decnum
+                        getlistitem stack stacklen > stknum
+                        mod finalstack < stknum
+                        listpop stack
+                        listpop stack
+                        listapp stack finalstack
+                    ]
+                    if token = sumstrkeyword [
+                        len stack stacklen
+                        int decnum : -1
+                        mod stacklen < decnum
+                        getlistitem stack stacklen > stkstr1
+                        mod stacklen < decnum
+                        getlistitem stack stacklen > stkstr2
+                        join stkstr2 stkstr1 finalstack
+                        listpop stack
+                        listpop stack
+                        listapp stack finalstack
+                    ]
+                    if token = movkeyword [
+                        bool inNormalMode : no
+                        bool inMov : ok
+                    ]
+                    if token = printmovkeyword [
+                        bool inMovPrint : ok
+                        bool inNormalMode : no
+                    ]
+                    if token = showmempointskeyword [
+                        showln mempoints
+                    ]
+                ]
+                if inPrintMsg [
+                    string nlkey : \n
+                    if token = printkeyword [
+                        && nothing
+                    ]
+                    if token ! printkeyword [
+                        if token = endtoken [
+                            joinlist ptrmsg spc ptrmsg
+                            showln ptrmsg
+                            list ptrmsg
+                            bool inPrintMsg : no
+                            bool inNormalMode : ok
+                        ]
+                        if token ! endtoken [
+                            if token = nlkey [
+                                    listapp ptrmsg nl
+                            ]
+                            if token ! nlkey [
+                                listapp ptrmsg token
+                            ]
+                        ]
+                    ]
+                ]
+                if inPush [
+                    if token = pushkeyword [
+                        && nothing
+                    ]
+                    if token ! pushkeyword [
+                        if token = endtoken [
+                            bool inPush : no
+                            bool inNormalMode : ok 
+                        ]
+                        if token ! endtoken [
+                            toint token
+                            listapp stack token
+                        ]
+                    ]
+                ]
+                if inPushStr [
+                    if token = pushstrkeyword [
+                        && nothing
+                    ]
+                    if token ! pushstrkeyword [
+                        if token = endtoken [
+                            joinlist ptrmsg spc ptrmsg
+                            listapp stack ptrmsg
+                            list ptrmsg
+                            bool inPushStr : no
+                            bool inNormalMode : ok
+                        ]
+                        if token ! endtoken [
+                            listapp ptrmsg token
+                        ]
+                    ]
+                ]
+                if inMov [
+                    if token = movkeyword [
+                        && nothing
+                    ]
+                    if token ! movkeyword [
+                        if token = endtoken [
+                            bool inMov : no
+                            bool inNormalMode : ok
+                        ]
+                        if token ! endtoken [
+                            int finalnum : -1
+                            getlistitem stack finalnum > finalstack
+                            list2app mempoints token finalstack
+                            listpop stack
+                        ]
+                    ]
+                ]
+                if inMovPrint [
+                    string nlkey : \n
+                    if token = printmovkeyword [
+                        && nothing
+                    ]
+                    if token ! printmovkeyword [
+                        if token = endtoken [
+                            bool inMovPrint : no
+                            bool inNormalMode : ok
+                        ]
+                        if token ! endtoken [
+                            getlist2item mempoints token > finalpointer
+                            showln finalpointer
+                        ]
+                    ]
+                ]
+                if pointslen > realpointslen [
+                    string errormessage : Error: unknown memory point name
+                    call shownl errormessage
+                    stop
+                ]
+            ]
+        ]
+    ]
+    if filetoopen notends extension [
+        string errormsg : Error: use .icasm file extension!
+        call shownl errormsg
+    ]
+]
