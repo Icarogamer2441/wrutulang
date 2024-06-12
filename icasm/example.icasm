@@ -1,0 +1,23 @@
+push 10 ;
+push_str Hello world! ;
+mov max nax ;
+ptrmov max ; nl ptrmov nax ; nl
+stack
+nl
+mem
+nl
+push 10 ; print nl
+push 20 ;
+print nl
+push 100 ;
+stack nl
+pop
+stack nl
+push_str Hello world! ;
+printnl
+push 500 500 ;
+stack nl
+sum stack nl
+push_str Hello, ;
+push_str world! ; stack nl
+sum_str stack nl
