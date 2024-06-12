@@ -1,0 +1,26 @@
+libimport std
+
+fnc printFileCnt [
+    file read arg1 out
+    call shownl out
+]
+
+fnc writeFile [
+    file write arg1 arg2
+    filenl arg1
+]
+
+fnc appendFile [
+    file append arg1 arg2
+    filenl arg1
+]
+
+fnc main [
+    param printFileCnt arg1 arg1
+
+    param writeFile arg1 arg1
+    param writeFile arg2 arg2
+
+    param appendFile arg1 arg1
+    param appendFile arg2 arg2
+]
