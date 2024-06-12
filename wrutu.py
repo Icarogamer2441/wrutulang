@@ -347,6 +347,22 @@ class Executor:
                     elif token == "list2pop":
                         listname = tokens[1]
                         variables[listname].popitem()
+                    elif token == "div":
+                        varname11 = tokens[1]
+                        if tokens[2] == "<":
+                            varname22 = tokens[3]
+                            variables[varname11] /= variables.get(varname22)
+                        else:
+                            print("Error: use < to modify the second var to the first var")
+                            sys.exit(1)
+                    elif token == "mul":
+                        varname11 = tokens[1]
+                        if tokens[2] == "<":
+                            varname22 = tokens[3]
+                            variables[varname11] *= variables.get(varname22)
+                        else:
+                            print("Error: use < to modify the second var to the first var")
+                            sys.exit(1)
                     else:
                         print(f"Error: unknown token: '{token}'")
                         sys.exit(1)
@@ -452,7 +468,7 @@ class Executor:
                         while_code.append(" ".join(tokens))
 
 if __name__ == "__main__":
-    version = "2.1"
+    version = "2.2"
     if len(sys.argv) == 1:
         print(f"Wrutu version {version}")
         print(f"Usage: {sys.argv[0]} <file>")
