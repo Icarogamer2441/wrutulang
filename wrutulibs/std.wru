@@ -180,6 +180,14 @@ fnc shownl [
     showln \n
 ]
 
+fnc inp [
+    showln arg1
+    showln \spc
+    string start : input string
+    join start arg2 finalinpcode
+    run finalinpcode
+]
+
 fnc main [
     param int8 arg1 arg1
     param int8 arg2 arg2
@@ -219,4 +227,7 @@ fnc main [
     param showList arg1 arg1
 
     param shownl arg1 arg1
+    
+    param inp arg1 arg1
+    param inp arg2 arg2
 ]
