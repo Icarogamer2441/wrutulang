@@ -32,5 +32,6 @@ always use spaces if you want to do something, because tokens in this language i
 ## pronounce
 you can pronounce has: wrutulang (in portuguese: uhutuleng)
 
-
-![Wrutulang icon (made by AI)](./icon.png)
+## Icon
+wrutulnag icon (made by AI)
+![Wrutulang icon](./icon.png)
